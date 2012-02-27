@@ -84,7 +84,7 @@ class MyWidget extends  WP_Widget {
 	public $name = 'GoogleFY';
 	
 	public function __construct() {
-		parent::__construct(false,'MY GoogleFY');
+		parent::__construct(false,'MY GoogleFY',array('description'=>'my google translate, to use the accept language to make it hidden when in chinese!'));
 	}
 	
 	/**
