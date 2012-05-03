@@ -58,11 +58,14 @@ function add_footer($str){
 /**
  * 是否应该用汉语选择
  */
-function isChinese() {
-	
-	$langage = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-	return substr($langage, 0,5) == 'zh-cn';
-	
+function isChinese() {	
+$curl=curl_init();
+curl_setopt($curl,CURLOPT_URL, "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=".$ip);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$location = curl_exec($curl);
+$location = json_decode($location);
+return $location->country == "中国";
+return array('province'=>$location->province,'city'=>$location->city,'district'=>$location->district,'isp'=>$location->isp,'desc'=>$location->desc);
 }
 
 /**
